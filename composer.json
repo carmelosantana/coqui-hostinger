@@ -1,0 +1,70 @@
+{
+    "name": "carmelosantana/coqui-toolkit-hostinger",
+    "description": "Hostinger VPS management toolkit for Coqui — virtual machines, firewalls, SSH keys, backups, snapshots, recovery, DNS PTR records, OS templates, and post-install scripts via the Hostinger REST API v1.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "coqui",
+        "hostinger",
+        "vps",
+        "firewall",
+        "server",
+        "hosting",
+        "toolkit",
+        "php-agents"
+    ],
+    "authors": [
+        {
+            "name": "Carmelo Santana"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "symfony/http-client": "^7.0"
+    },
+    "require-dev": {
+        "carmelosantana/php-agents": "^0.7",
+        "pestphp/pest": "^3.0",
+        "phpstan/phpstan": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CarmeloSantana\\CoquiToolkitHostinger\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CarmeloSantana\\CoquiToolkitHostinger\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "php-agents": {
+            "toolkits": [
+                "CarmeloSantana\\CoquiToolkitHostinger\\HostingerToolkit"
+            ],
+            "credentials": {
+                "HOSTINGER_API_TOKEN": "Hostinger API Bearer token — generate one at https://developers.hostinger.com"
+            },
+            "gated": {
+                "hostinger_vps": ["recreate", "setup", "set_password"],
+                "hostinger_firewall": ["delete", "deactivate", "delete_rule"],
+                "hostinger_ssh": ["delete", "detach"],
+                "hostinger_backup": ["restore_backup", "restore_snapshot", "delete_snapshot"],
+                "hostinger_recovery": ["start", "stop"],
+                "hostinger_script": ["delete"]
+            }
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "analyse": "phpstan analyse"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

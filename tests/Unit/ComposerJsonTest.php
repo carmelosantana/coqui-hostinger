@@ -30,7 +30,7 @@ test('composer.json declares toolkit class', function () {
     $composer = json_decode(file_get_contents($composerPath), true);
 
     expect($composer['extra']['php-agents']['toolkits'])
-        ->toContain('CoquiBot\\Toolkits\\Hostinger\\HostingerToolkit');
+    ->toContain('CarmeloSantana\\CoquiToolkitHostinger\\HostingerToolkit');
 });
 
 test('gated VPS actions include destructive operations', function () {
